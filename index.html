@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>건축인 (BuildLink) - 건축 전문가와 기술자들을 위한 플랫폼</title>
+  <!-- 눈이 편안하고 가독성이 뛰어난 프리텐다드 폰트 CDN -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    /* CSS 초기화 및 전역 스타일 */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+      line-height: 1.6;
+      word-break: keep-all;
+    }
+
+    /* 상단 네비게이션 */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid #e2e8f0;
+      padding: 16px 24px;
+    }
+
+    .nav-container {
+      max-width: 1080px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0284c7;
+      text-decoration: none;
+    }
+
+    .nav-badge {
+      font-size: 0.75rem;
+      background: #e0f2fe;
+      color: #0369a1;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .nav-menu a {
+      text-decoration: none;
+      color: #475569;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: color 0.2s;
+    }
+
+    .nav-menu a:hover {
+      color: #0284c7;
+    }
+
+    /* 전체 레이아웃 컨테이너 */
+    .container {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 32px 20px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+    }
+
+    /* 히어로(메인 소개) 섹션 */
+    .hero-section {
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #075985 100%);
+      color: #ffffff;
+      border-radius: 28px;
+      padding: 56px 40px;
+      text-align: center;
+      box-shadow: 0 20px 30px -10px rgba(2, 132, 199, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 6px 18px;
+      border-radius: 9999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-title {
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1.3;
+      margin-bottom: 18px;
+    }
+
+    .hero-desc {
+      font-size: 1.25rem;
+      color: #e0f2fe;
+      max-width: 680px;
+      margin: 0 auto 32px;
+      font-weight: 400;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 36px;
+      margin-top: 24px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .stat-item h4 {
+      font-size: 1.6rem;
+      font-weight: 800;
+    }
+
+    .stat-item p {
+      font-size: 0.9rem;
+      color: #bae6fd;
+    }
+
+    /* 섹션 헤더 공통 */
+    .section-header {
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .section-title {
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .section-sub {
+      color: #64748b;
+      font-size: 1rem;
+      margin-top: 6px;
+    }
+
+    /* 전문 분야 그리드 카드 */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .category-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      padding: 28px 24px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .category-card:hover {
+      transform: translateY(-5px);
+      border-color: #0284c7;
+      box-shadow: 0 16px 24px -6px rgba(2, 132, 199, 0.15);
+    }
+
+    .category-icon {
+      font-size: 2.4rem;
+      background: #f0f9ff;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 16px;
+      margin-bottom: 20px;
+    }
+
+    .category-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+
+    .category-card p {
+      font-size: 0.95rem;
+      color: #64748b;
+      line-height: 1.5;
+    }
+
+    .category-tag {
+      display: inline-block;
+      margin-top: 14px;
+      font-size: 0.8rem;
+      color: #0284c7;
+      background: #e0f2fe;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+
+    /* 커뮤니티 & 실시간 교류 피드 섹션 */
+    .community-section {
+      background: #ffffff;
+      border-radius: 24px;
+      padding: 36px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.04);
+    }
+
+    .post-filter {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      border: 1px solid #cbd5e1;
+      background: #ffffff;
+      color: #475569;
+      padding: 8px 18px;
+      border-radius: 9999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn.active, .filter-btn:hover {
+      background: #0284c7;
+      color: #ffffff;
+      border-color: #0284c7;
+    }
+
+    .feed-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .feed-item {
+      border: 1px solid #f1f5f9;
+      background: #f8fafc;
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.2s;
+    }
+
+    .feed-item:hover {
+      background: #f1f5f9;
+    }
+
+    .feed-main {
+      flex: 1;
+    }
+
+    .feed-badge {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #0369a1;
+      background: #e0f2fe;
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-bottom: 6px;
+    }
+
+    .feed-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 4px;
+    }
+
+    .feed-meta {
+      font-size: 0.85rem;
+      color: #94a3b8;
+    }
+
+    .feed-replies {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #0284c7;
+      background: #ffffff;
+      border: 1px solid #bae6fd;
+      padding: 8px 16px;
+      border-radius: 12px;
+      white-space: nowrap;
+      margin-left: 16px;
+    }
+
+    /* 한 줄 의견 남기기 입력창 */
+    .quick-write-box {
+      margin-top: 24px;
+      padding-top: 24px;
+      border-top: 1px solid #e2e8f0;
+      display: flex;
+      gap: 12px;
+    }
+
+    .quick-input {
+      flex: 1;
+      padding: 14px 18px;
+      border: 1px solid #cbd5e1;
+      border-radius: 12px;
+      font-size: 1rem;
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+
+    .quick-input:focus {
+      border-color: #0284c7;
+    }
+
+    .quick-btn {
+      background: #0284c7;
+      color: #ffffff;
+      border: none;
+      padding: 0 24px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+
+    .quick-btn:hover {
+      background: #0369a1;
+    }
+
+    /* 하단 플랫폼 참여 및 응원 배너 */
+    .join-banner {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #ffffff;
+      border-radius: 28px;
+      padding: 48px 32px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .join-banner h2 {
+      font-size: 2rem;
+      font-weight: 800;
+    }
+
+    .join-banner p {
+      color: #94a3b8;
+      font-size: 1.1rem;
+      max-width: 600px;
+    }
+
+    .action-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 8px;
+    }
+
+    .btn-support {
+      background: #0284c7;
+      color: #ffffff;
+      border: none;
+      border-radius: 50px;
+      padding: 16px 36px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .btn-support:hover {
+      background: #0369a1;
+      transform: translateY(-2px);
+    }
+
+    .support-counter {
+      background: rgba(255, 255, 255, 0.25);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .btn-join {
+      background: #ffffff;
+      color: #0f172a;
+      border: none;
+      border-radius: 50px;
+      padding: 16px 32px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .btn-join:hover {
+      background: #e2e8f0;
+    }
+
+    /* 푸터 */
+    footer {
+      text-align: center;
+      color: #94a3b8;
+      font-size: 0.9rem;
+      padding: 20px;
+    }
+
+    /* 모바일 반응형 처리 */
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 14px 16px;
+      }
+
+      .nav-menu {
+        display: none; /* 모바일 단순화 */
+      }
+
+      .hero-section {
+        padding: 40px 20px;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .hero-desc {
+        font-size: 1.05rem;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .community-section {
+        padding: 24px 18px;
+      }
+
+      .feed-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .feed-replies {
+        margin-left: 0;
+        align-self: flex-start;
+      }
+
+      .quick-write-box {
+        flex-direction: column;
+      }
+
+      .quick-btn {
+        padding: 14px;
+      }
+
+      .join-banner {
+        padding: 36px 20px;
+      }
+
+      .join-banner h2 {
+        font-size: 1.6rem;
+      }
+
+      .btn-support, .btn-join {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 내비게이션 바 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <span>🏗️</span> BuildLink <span class="nav-badge">건축인</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="#categories">전문분야</a></li>
+        <li><a href="#community">현장커뮤니티</a></li>
+        <li><a href="#join">플랫폼참여</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container">
+    <!-- 히어로(메인) 섹션 -->
+    <header class="hero-section">
+      <span class="hero-tag">건축가 & 시공자 & 건축가 네트워크</span>
+      <h1 class="hero-title">건축하는 모든 손길이<br>연결되는 플랫폼</h1>
+      <p class="hero-desc">
+        건축주와 건축사, 목수, 자재 판매자부터 첨단 시공 엔지니어까지.<br>
+        현장의 생생한 지식과 혁신 기술이 교류되는 열린 광장입니다.
+      </p>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <h4>2,400+</h4>
+          <p>등록된 건축 장인 & 전문가</p>
+        </div>
+        <div class="stat-item">
+          <h4>850+</h4>
+          <p>공유된 자재 및 기술 노하우</p>
+        </div>
+        <div class="stat-item">
+          <h4>AI 지원</h4>
+          <p>스마트 건축 솔루션 연동</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- 전문 분야 섹션 -->
+    <section id="categories">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">🔨 전문 분야별 네트워크</h2>
+          <p class="section-sub">원하는 분야의 전문가들과 바로 소통하고 지식을 나눠보세요.</p>
+        </div>
+      </div>
+
+      <div class="category-grid">
+        <!-- 카드 1: 목수 & 현장 장인 -->
+        <div class="category-card" onclick="alert('목수/시공 커뮤니티로 연결 준비 중입니다.')">
+          <div class="category-icon">🪚</div>
+          <h3>목수 & 시공 장인</h3>
+          <p>한옥, 목조주택, 내장 인테리어 등 손끝으로 디테일을 완성하는 장인들의 시공 노하우와 협업 네트워크.</p>
+          <span class="category-tag">현장 팁 & 일감</span>
+        </div>
+
+        <!-- 카드 2: 건축재료 & 유통 -->
+        <div class="category-card" onclick="alert('건축재료 거래 및 정보망으로 연결 준비 중입니다.')">
+          <div class="category-icon">🧱</div>
+          <h3>건축자재 & 신소재</h3>
+          <p>친환경 자재, 단열재, 구조목, 석재 등 품질 좋은 최신 건축 재료 정보와 공급자 직거래 채널.</p>
+          <span class="category-tag">단가표 & 샘플</span>
+        </div>
+
+        <!-- 카드 3: AI & 스마트 건축 -->
+        <div class="category-card" onclick="alert('AI 스마트 건축 허브로 연결 준비 중입니다.')">
+          <div class="category-icon">🤖</div>
+          <h3>AI & 첨단 기술</h3>
+          <p>도면 자동 분석, AI 물량 산출, 3D 모델링, 스마트 현장 안전 솔루션 등 미래 건축 기술의 모든 것.</p>
+          <span class="category-tag">신기술 토론</span>
+        </div>
+
+        <!-- 카드 4: 설계 & 인테리어 -->
+        <div class="category-card" onclick="alert('설계 및 디자인 랩으로 연결 준비 중입니다.')">
+          <div class="category-icon">📐</div>
+          <h3>설계 & 감리 협력</h3>
+          <p>건축 인허가, 도면 디테일, 인테리어 설계사와의 1:1 질의응답 및 프로젝트 파트너 발굴.</p>
+          <span class="category-tag">포트폴리오</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 커뮤니티 피드 섹션 -->
+    <section id="community" class="community-section">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">💬 실시간 현장 소통방</h2>
+          <p class="section-sub">지금 현장에서 일어나는 이야기와 기술 질문들을 실시간으로 확인하세요.</p>
+        </div>
+      </div>
+
+      <!-- 카테고리 필터 -->
+      <div class="post-filter">
+        <button class="filter-btn active" onclick="filterPosts('전체', this)">전체보기</button>
+        <button class="filter-btn" onclick="filterPosts('시공/목공', this)">시공/목공</button>
+        <button class="filter-btn" onclick="filterPosts('자재정보', this)">자재정보</button>
+        <button class="filter-btn" onclick="filterPosts('AI/기술', this)">AI/기술</button>
+      </div>
+
+      <!-- 게시글 목록 -->
+      <div class="feed-list" id="feedList">
+        <div class="feed-item" data-category="AI/기술">
+          <div class="feed-main">
+            <span class="feed-badge">AI/기술</span>
+            <div class="feed-title">도면 CAD 파일을 AI로 자동 물량 산출해 보신 분 계신가요?</div>
+            <div class="feed-meta">작성자: 김호천 · 10분 전 · 조회수 128</div>
+          </div>
+          <div class="feed-replies">💬 댓글 8개</div>
+        </div>
+
+        <div class="feed-item" data-category="시공/목공">
+          <div class="feed-main">
+            <span class="feed-badge">시공/목공</span>
+            <div class="feed-title">겨울철 함수율 높은 구조목 시공 시 주의해야 할 팁 공유합니다.</div>
+            <div class="feed-meta">작성자: 한목수 · 35분 전 · 조회수 312</div>
+          </div>
+          <div class="feed-replies">💬 댓글 15개</div>
+        </div>
+
+        <div class="feed-item" data-category="자재정보">
+          <div class="feed-main">
+            <span class="feed-badge">자재정보</span>
+            <div class="feed-title">요즘 현장에서 많이 찾는 친환경 글루램(집성재) 납품처 추천 부탁드립니다.</div>
+            <div class="feed-meta">작성자: 자재마스터 · 1시간 전 · 조회수 245</div>
+          </div>
+          <div class="feed-replies">💬 댓글 6개</div>
+        </div>
+      </div>
+
+      <!-- 한 줄 글 등록 기능 -->
+      <div class="quick-write-box">
+        <input type="text" id="postInput" class="quick-input" placeholder="현장 이야기나 궁금한 점을 한 줄로 남겨보세요..." />
+        <button class="quick-btn" onclick="addNewPost()">글 올리기</button>
+      </div>
+    </section>
+
+    <!-- 플랫폼 참여 및 응원 섹션 -->
+    <section id="join" class="join-banner">
+      <h2>함께 만드는 건축의 미래</h2>
+      <p>
+        더 안전하고 정직하며 똑똑한 건축 생태계를 만들어갈 동료를 기다립니다.<br>
+        지금 플랫폼 설립을 함께 응원해 주세요!
+      </p>
+
+      <div class="action-group">
+        <button id="supportBtn" class="btn-support" onclick="addSupport()">
+          <span>👏 플랫폼 응원하기</span>
+          <span id="supportCount" class="support-counter">128</span>
+        </button>
+        <button class="btn-join" onclick="alert('사전 참여 신청이 완료되었습니다! 출시 시 가장 먼저 안내해 드립니다.')">
+          사전 회원 등록하기
+        </button>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <p>© 2026 BuildLink (건축인). All rights reserved.</p>
+    <p>건축인들을 위한 열린 소통과 기술 융합 플랫폼</p>
+  </footer>
+
+  <!-- 인터랙션 스크립트 -->
+  <script>
+    // 1. 응원 카운터 기능
+    let count = 128;
+    function addSupport() {
+      count += 1;
+      const counterEl = document.getElementById('supportCount');
+      counterEl.textContent = count;
+      counterEl.style.transform = 'scale(1.2)';
+      setTimeout(() => {
+        counterEl.style.transform = 'scale(1)';
+      }, 150);
+    }
+
+    // 2. 카테고리 필터링 기능
+    function filterPosts(category, btnElement) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => btn.classList.remove('active'));
+      btnElement.classList.add('active');
+
+      const feedItems = document.querySelectorAll('.feed-item');
+      feedItems.forEach(item => {
+        if (category === '전체' || item.getAttribute('data-category') === category) {
+          item.style.display = 'flex';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    // 3. 실시간 글 등록 모의 기능
+    function addNewPost() {
+      const input = document.getElementById('postInput');
+      const text = input.value.trim();
+
+      if (!text) {
+        alert('내용을 입력해 주세요!');
+        input.focus();
+        return;
+      }
+
+      const feedList = document.getElementById('feedList');
+      const newFeed = document.createElement('div');
+      newFeed.className = 'feed-item';
+      newFeed.setAttribute('data-category', 'AI/기술');
+
+      newFeed.innerHTML = `
+        <div class="feed-main">
+          <span class="feed-badge">실시간 새 글</span>
+          <div class="feed-title">${escapeHtml(text)}</div>
+          <div class="feed-meta">작성자: 나(방문자) · 방금 전 · 조회수 1</div>
+        </div>
+        <div class="feed-replies">💬 댓글 0개</div>
+      `;
+
+      feedList.prepend(newFeed);
+      input.value = '';
+    }
+
+    // 엔터키로 글 등록 지원
+    document.getElementById('postInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        addNewPost();
+      }
+    });
+
+    // 간단한 XSS 방지 함수
+    function escapeHtml(string) {
+      return String(string).replace(/[&<>"']/g, function(s) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        }[s];
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>제1회 2026 자청비 메밀꽃 사진 공모전 계획 및 공모요강</title>
+  <!-- 가독성이 뛰어난 한국어 폰트 CDN -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@600;700;900&display=swap">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Malgun Gothic", dotum, sans-serif;
+      background-color: #f1f5f9;
+      color: #1e293b;
+      padding: 40px 16px;
+      line-height: 1.75;
+      word-break: keep-all;
+    }
+
+    /* A4 공문서 규격 스타일 */
+    .document-page {
+      max-width: 840px;
+      margin: 0 auto;
+      background: #ffffff;
+      padding: 60px 56px;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid #cbd5e1;
+    }
+
+    /* 문서 대제목 */
+    .doc-header {
+      border-bottom: 3px double #0f172a;
+      padding-bottom: 24px;
+      margin-bottom: 36px;
+      text-align: center;
+    }
+
+    .doc-main-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: #0f172a;
+      letter-spacing: -0.5px;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .doc-sub-badge {
+      display: inline-block;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    /* 단락 공통 */
+    .section-block {
+      margin-bottom: 36px;
+    }
+
+    .section-heading {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 8px;
+    }
+
+    .section-heading::before {
+      content: "□";
+      color: #1e293b;
+      font-weight: 900;
+      font-size: 1.2rem;
+    }
+
+    /* 리스트 스타일 */
+    .bullet-item {
+      position: relative;
+      padding-left: 20px;
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+      color: #334155;
+    }
+
+    .bullet-item::before {
+      content: "❍";
+      position: absolute;
+      left: 0;
+      color: #2563eb;
+      font-size: 0.95rem;
+    }
+
+    .sub-bullet {
+      position: relative;
+      padding-left: 20px;
+      margin-top: 6px;
+      margin-bottom: 6px;
+      font-size: 0.98rem;
+      color: #475569;
+    }
+
+    .sub-bullet::before {
+      content: "▷";
+      position: absolute;
+      left: 0;
+      color: #64748b;
+      font-size: 0.85rem;
+    }
+
+    .dash-bullet {
+      padding-left: 16px;
+      margin-top: 4px;
+      font-size: 0.95rem;
+      color: #64748b;
+    }
+
+    .dash-bullet::before {
+      content: "- ";
+      font-weight: 700;
+    }
+
+    .highlight-text {
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    /* 시상 내역 테이블 */
+    .table-wrap {
+      margin-top: 14px;
+      overflow-x: auto;
+    }
+
+    .prize-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+      font-size: 0.98rem;
+    }
+
+    .prize-table th, .prize-table td {
+      border: 1px solid #cbd5e1;
+      padding: 12px 8px;
+    }
+
+    .prize-table th {
+      background-color: #f8fafc;
+      font-weight: 800;
+      color: #1e293b;
+    }
+
+    .prize-table td {
+      color: #334155;
+    }
+
+    .prize-table tr.total-row {
+      background-color: #f1f5f9;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    /* 유의사항 소제목 */
+    .clause-title {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #0f172a;
+      margin-top: 16px;
+      margin-bottom: 6px;
+    }
+
+    /* 인쇄 및 복사 버튼 툴바 */
+    .toolbar {
+      max-width: 840px;
+      margin: 0 auto 20px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .btn-action {
+      background: #1e293b;
+      color: #ffffff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: background 0.2s;
+      font-family: inherit;
+    }
+
+    .btn-action:hover {
+      background: #334155;
+    }
+
+    .btn-poster {
+      background: #445943;
+    }
+
+    .btn-poster:hover {
+      background: #344633;
+    }
+
+    /* 인쇄 시 여백 및 불필요 요소 제거 */
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+      }
+
+      .toolbar {
+        display: none !important;
+      }
+
+      .document-page {
+        box-shadow: none;
+        border: none;
+        padding: 30px 20px;
+        max-width: 100%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .document-page {
+        padding: 32px 20px;
+      }
+
+      .doc-main-title {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 제어 버튼 -->
+  <div class="toolbar">
+    <button class="btn-action btn-poster" onclick="location.href='poster.html'">
+      <span>🎨</span> 웹 포스터 보기
+    </button>
+    <button class="btn-action" onclick="window.print()">
+      <span>🖨️</span> 요강 인쇄 / PDF 저장
+    </button>
+  </div>
+
+  <!-- 공모요강 본문 문서 -->
+  <main class="document-page">
+    
+    <header class="doc-header">
+      <h1 class="doc-main-title">제1회 2026 자청비 메밀꽃 사진 공모전 계획 및 공모요강</h1>
+      <p class="doc-sub-badge">[ 주최·주관 : 와흘메밀마을 · 원남지협동조합 ]</p>
+    </header>
+
+    <!-- 1. 공모 개요 -->
+    <section class="section-block">
+      <h2 class="section-heading">공모 개요</h2>
+      
+      <div class="bullet-item">
+        <span class="highlight-text">공 모 명</span> : 제1회 2026 자청비 메밀꽃 사진 공모전
+      </div>
+
+      <div class="bullet-item">
+        <span class="highlight-text">접수기간</span> : <span class="highlight-text">2206.10.15 ~ 10월 30일</span> (2026. 10. 15 ~ 10. 30)
+        <div class="dash-bullet">전자우편 접수는 마감일(10월 30일) 18:00 도착분에 한함</div>
+      </div>
+
+      <div class="bullet-item">
+        <span class="highlight-text">접 수 처</span> : 전자우편(이메일) 온라인 접수
+        <div class="dash-bullet">접수 이메일 : <a href="mailto:memil@naver.com" style="color: #2563eb; font-weight: 700;">memil@naver.com</a></div>
+      </div>
+
+      <div class="bullet-item">
+        <span class="highlight-text">출품자격</span> : 대한민국 국민 및 외국인 등 누구나 (제한 없음)
+      </div>
+
+      <div class="bullet-item">
+        <span class="highlight-text">주최·주관</span> : 와흘메밀마을, 원남지협동조합
+      </div>
+    </section>
+
+    <!-- 2. 작품 내용 및 출품 규격 -->
+    <section class="section-block">
+      <h2 class="section-heading">작품 내용 및 출품 규격</h2>
+      
+      <div class="bullet-item">
+        <span class="highlight-text">출품조건</span> : 와흘메밀농촌체험휴양마을 풍경과 메밀을 활용한 전통 음식 만들기 등을 표현할 수 있는 미발표 작품
+        
+        <div class="sub-bullet">와흘메밀농촌체험휴양마을의 아름다운 메밀꽃밭 풍경을 담은 작품</div>
+        <div class="sub-bullet">메밀을 활용한 전통 음식(메밀범벅, 메밀국수, 빙떡 등) 만들기 및 음식 체험 모습을 담은 작품</div>
+        <div class="sub-bullet">농경의 여신 자청비 신화의 숨결과 제주의 자연·사람이 어우러진 정취를 담은 작품</div>
+        <div class="sub-bullet">와흘메밀마을의 특색 있는 포토존 및 숨은 비경을 표현한 작품</div>
+      </div>
+
+      <div class="bullet-item" style="margin-top: 14px;">
+        <span class="highlight-text">촬영 기간</span>
+        <div class="sub-bullet">2026년 또는 최근 촬영 작품에 한함</div>
+        <div class="sub-bullet">모든 출품작은 원본 파일의 EXIF 정보를 통해 촬영 일시가 확인 가능해야 함</div>
+      </div>
+
+      <div class="bullet-item" style="margin-top: 14px;">
+        <span class="highlight-text">디지털 출품 규격</span>
+        <div class="sub-bullet">디지털 사진 파일 : <span class="highlight-text">JPG</span> 원본 파일 (JPEG 가능)</div>
+        <div class="sub-bullet">카메라 기종 제한 없음 (디지털 카메라, 스마트폰, 드론 촬영본 모두 출품 가능)</div>
+        <div class="sub-bullet">해상도 : 긴 변 기준 3,000픽셀 이상의 고화질 원본 제출 권장</div>
+      </div>
+    </section>
+
+    <!-- 3. 출품료 및 출품 요령 -->
+    <section class="section-block">
+      <h2 class="section-heading">출품료 및 출품 요령</h2>
+      
+      <div class="bullet-item">
+        <span class="highlight-text">출 품 료</span> : <span class="highlight-text">무료</span>
+      </div>
+
+      <div class="bullet-item">
+        <span class="highlight-text">출품 수량</span> : 1인당 최대 3점 이내
+      </div>
+
+      <div class="bullet-item">
+        <span class="highlight-text">출품 방법</span>
+        <div class="sub-bullet">전자우편(<a href="mailto:memil@naver.com">memil@naver.com</a>)으로 고화질 JPG 파일 첨부하여 발송</div>
+        <div class="sub-bullet">메일 제목 : <strong>[제1회 2026 자청비 메밀꽃 사진 공모전 출품] 출품자 성명 - 작품명</strong></div>
+        <div class="sub-bullet">메일 본문 기재 사항 :
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 10px 14px; margin-top: 6px; font-size: 0.92rem;">
+            1. 출품자 성명 : <br>
+            2. 연락처(휴대전화) : <br>
+            3. 작품명 : <br>
+            4. 촬영 장소 및 작품 설명 : <br>
+            * 디지털 JPG 원본 사진 파일 첨부 필수
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. 시상 규모 -->
+    <section class="section-block">
+      <h2 class="section-heading">시상 규모 (총 상금 200만 원, 총 9명)</h2>
+      
+      <div class="table-wrap">
+        <table class="prize-table">
+          <thead>
+            <tr>
+              <th style="width: 25%;">구 분</th>
+              <th style="width: 15%;">수 량</th>
+              <th style="width: 25%;">상 금</th>
+              <th style="width: 35%;">시 상</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>자청비상 (최우수)</strong></td>
+              <td>1점</td>
+              <td><strong>50만 원</strong></td>
+              <td>상장 및 상금</td>
+            </tr>
+            <tr>
+              <td><strong>서천꽃상 (우수)</strong></td>
+              <td>2점</td>
+              <td>각 <strong>30만 원</strong> (계 60만원)</td>
+              <td>상장 및 상금</td>
+            </tr>
+            <tr>
+              <td><strong>환생꽃상 (장려)</strong></td>
+              <td>3점</td>
+              <td>각 <strong>20만 원</strong> (계 60만원)</td>
+              <td>상장 및 상금</td>
+            </tr>
+            <tr>
+              <td><strong>와흘메밀문화상 (입선)</strong></td>
+              <td>3점</td>
+              <td>각 <strong>10만 원</strong> (계 30만원)</td>
+              <td>상장 및 상금</td>
+            </tr>
+            <tr class="total-row">
+              <td><strong>합 계</strong></td>
+              <td><strong>총 9점</strong></td>
+              <td><strong>200만 원</strong></td>
+              <td>-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 5. 유의사항 -->
+    <section class="section-block">
+      <h2 class="section-heading">유의사항</h2>
+
+      <div class="clause-title">[중복 출품 및 타인 명의 도용 금지]</div>
+      <div class="sub-bullet">국내외 타 공모전에서 입상·입선한 동일 작품, 유사 모방 작품, 혹은 타 지역에서 촬영한 사진을 와흘메밀마을 촬영작으로 위장하여 출품한 경우 입상이 취소되며 상금은 전액 환수 조치됩니다.</div>
+      <div class="sub-bullet">타인의 명의를 도용한 대리 출품의 경우도 상권이 취소됩니다.</div>
+
+      <div class="clause-title">[민·형사상 책임 및 개인정보 동의]</div>
+      <div class="sub-bullet">출품작과 관련된 초상권, 저작권, 명의도용 등 법적 분쟁 발생 시, 이에 따른 모든 민·형사상 책임은 출품자 본인에게 있습니다.</div>
+      <div class="sub-bullet">출품자는 본 공모전에 작품을 제출함으로써 본 공모요강 및 개인정보 수집·이용에 동의한 것으로 간주합니다.</div>
+
+      <div class="clause-title">[생성형 AI 활용 및 과도한 편집 제재]</div>
+      <div class="sub-bullet">생성형 AI(인공지능)를 기반으로 제작되거나 합성, 그래픽 기법을 적용한 디지털 사진, 과도한 포토샵 변형 작품은 출품이 일체 불가합니다. (단, 색감, 밝기, 대비 등 기본적인 사진 보정은 허용)</div>
+      <div class="sub-bullet">공모 요강에 부적합한 과도한 보정 및 합성 여부는 심사위원회에서 검증하며 심사에서 제외됩니다.</div>
+
+      <div class="clause-title">[드론 촬영 및 항공 관련 규정]</div>
+      <div class="sub-bullet">드론 사진 출품작의 경우 반드시 법적 절차에 따른 비행 허가 및 항공촬영 승인을 준수한 작품이어야 합니다.</div>
+
+      <div class="clause-title">[시상금 원천징수]</div>
+      <div class="sub-bullet">입상작에 대한 상금은 관련 세법 규정에 따라 제세공과금 원천징수 후 지급될 수 있습니다.</div>
+
+      <div class="clause-title">[저작권 귀속 및 활용]</div>
+      <div class="sub-bullet">수상작에 대한 저작권은 저작자(출품자)에게 귀속됩니다.</div>
+      <div class="sub-bullet">단, 주최·주관사인 와흘메밀마을 및 원남지협동조합은 수상작에 한하여 향후 마을 홍보, 공익 목적의 복제, 전시, 배포, 인쇄물 및 온라인 SNS 홍보물 제작 등에 자유롭게 비영리 목적으로 활용할 수 있는 권리를 갖습니다.</div>
+    </section>
+
+    <!-- 6. 심사 및 결과 발표 -->
+    <section class="section-block">
+      <h2 class="section-heading">심사 및 당선작 발표</h2>
+
+      <div class="bullet-item">
+        <span class="highlight-text">심 사 일</span> : 공모 마감 후 전문가 심사 진행
+      </div>
+
+      <div class="bullet-item">
+        <span class="highlight-text">당선작 발표</span> : <span class="highlight-text">2026. 11. 15 (예정)</span>
+        <div class="dash-bullet">입상자 개별 통보 및 공식 공지</div>
+      </div>
+
+      <div class="bullet-item">
+        <span class="highlight-text">문 의 처</span>
+        <div class="dash-bullet">와흘메밀마을 · 원남지협동조합 공모전 운영사무국</div>
+        <div class="dash-bullet">전자우편 문의 : <a href="mailto:memil@naver.com" style="color: #2563eb; font-weight: 700;">memil@naver.com</a></div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

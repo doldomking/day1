@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>제1회 2026 자청비 메밀꽃 사진 공모전 포스터 및 모집요강</title>
+  <!-- 감성적인 명조와 고딕 웹폰트 CDN -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700;900&display=swap">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Pretendard", sans-serif;
+      background-color: #f3ede2;
+      color: #2c2724;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      padding: 40px 16px 80px;
+      line-height: 1.6;
+      word-break: keep-all;
+      gap: 40px;
+    }
+
+    /* 포스터 캔버스 (전체 프레임) */
+    .poster-container {
+      width: 100%;
+      max-width: 680px;
+      background: #faf6f0;
+      border-radius: 20px;
+      box-shadow: 0 25px 50px -12px rgba(80, 60, 40, 0.25);
+      border: 8px solid #ffffff;
+      outline: 1px solid #d5c8b5;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* 상단 비주얼 아트 헤더 */
+    .poster-hero {
+      position: relative;
+      background: linear-gradient(180deg, #445943 0%, #293829 100%);
+      color: #ffffff;
+      padding: 56px 36px 40px;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* 메밀꽃 일러스트 느낌의 배경 장식 원형 효과 */
+    .hero-glow {
+      position: absolute;
+      top: -30%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(circle, rgba(230, 245, 220, 0.25) 0%, rgba(255,255,255,0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .poster-subtitle {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.25rem;
+      color: #e3eed4;
+      font-weight: 400;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .poster-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      line-height: 1.25;
+      color: #ffffff;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .poster-title span {
+      color: #f7fee7;
+      display: block;
+    }
+
+    .poster-intro {
+      font-size: 1.05rem;
+      color: #d1dfc0;
+      max-width: 520px;
+      margin: 0 auto;
+      font-weight: 300;
+      line-height: 1.7;
+    }
+
+    /* 포스터 본문 내용 */
+    .poster-body {
+      padding: 40px 32px 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    /* 공모 요강 그리드 */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .info-box {
+      background: #ffffff;
+      border: 1px solid #e7ded0;
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .info-box-full {
+      grid-column: span 2;
+    }
+
+    .info-label {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #4d664b;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .info-content {
+      font-size: 1rem;
+      color: #3b3531;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .info-sub {
+      font-size: 0.85rem;
+      color: #7a7065;
+      font-weight: 400;
+      margin-top: 4px;
+    }
+
+    /* 상금 상세 리스트 */
+    .prize-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .prize-item {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.95rem;
+      padding-bottom: 6px;
+      border-bottom: 1px dashed #eee5d8;
+    }
+
+    .prize-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .prize-rank {
+      font-weight: 700;
+      color: #2b2622;
+    }
+
+    .prize-val {
+      font-weight: 700;
+      color: #4d664b;
+    }
+
+    /* 하단 액션 버튼 영역 */
+    .action-zone {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 16px 20px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      border-radius: 12px;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: #445943;
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: #344633;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: #445943;
+      border: 2px solid #445943;
+    }
+
+    .btn-secondary:hover {
+      background: #eef3eb;
+      transform: translateY(-2px);
+    }
+
+    /* 주최/후원 푸터 */
+    .poster-footer {
+      background: #eee5d8;
+      padding: 24px 32px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: #6e6459;
+      border-top: 1px solid #ded3c1;
+    }
+
+    .sponsor-logos {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: #4a4137;
+      font-size: 0.95rem;
+    }
+
+    .document-page {
+      display: none; /* 상세 모집요강 버튼을 누르면 보이도록 초기 숨김 처리 */
+      width: 100%;
+      max-width: 680px;
+      background: #ffffff;
+      padding: 48px 36px;
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+      border: 1px solid #d5c8b5;
+      animation: fadeIn 0.4s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .doc-header {
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+      text-align: center;
+    }
+
+    .doc-main-title {
+      font-family: 'Noto Serif KR', serif;
+      font-size: 1.7rem;
+      font-weight: 900;
+      color: #0f172a;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .doc-sub-badge {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    .section-block {
+      margin-bottom: 30px;
+    }
+
+    .section-heading {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 6px;
+    }
+
+    .section-heading::before {
+      content: "□";
+      color: #1e293b;
+      font-weight: 900;
+    }
+
+    .bullet-item {
+      position: relative;
+      padding-left: 18px;
+      margin-bottom: 10px;
+      font-size: 1rem;
+      color: #334155;
+    }
+
+    .bullet-item::before {
+      content: "❍";
+      position: absolute;
+      left: 0;
+      color: #2563eb;
+    }
+
+    .sub-bullet {
+      position: relative;
+      padding-left: 18px;
+      margin-top: 6px;
+      margin-bottom: 6px;
+      font-size: 0.93rem;
+      color: #475569;
+    }
+
+    .sub-bullet::before {
+      content: "▷";
+      position: absolute;
+      left: 0;
+      color: #64748b;
+    }
+
+    .dash-bullet {
+      padding-left: 14px;
+      margin-top: 4px;
+      font-size: 0.9rem;
+      color: #64748b;
+    }
+
+    .dash-bullet::before {
+      content: "- ";
+      font-weight: 700;
+    }
+
+    .highlight-text {
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    .prize-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: center;
+      font-size: 0.92rem;
+      margin-top: 10px;
+    }
+
+    .prize-table th, .prize-table td {
+      border: 1px solid #cbd5e1;
+      padding: 10px 6px;
+    }
+
+    .prize-table th {
+      background-color: #f8fafc;
+      font-weight: 800;
+      color: #1e293b;
+    }
+
+    .prize-table tr.total-row {
+      background-color: #f1f5f9;
+      font-weight: 800;
+    }
+
+    .clause-title {
+      font-weight: 800;
+      font-size: 1rem;
+      color: #0f172a;
+      margin-top: 14px;
+      margin-bottom: 6px;
+    }
+
+    /* 접수 모달 창 */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .modal-content {
+      background: #ffffff;
+      border-radius: 20px;
+      max-width: 480px;
+      width: 100%;
+      padding: 32px 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      position: relative;
+    }
+
+    .modal-header {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #2f402f;
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #475569;
+      margin-bottom: 6px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      outline: none;
+      font-family: inherit;
+    }
+
+    .file-dropzone {
+      border: 2px dashed #94a3b8;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      background: #f8fafc;
+      cursor: pointer;
+      color: #64748b;
+    }
+
+    .file-preview {
+      margin-top: 10px;
+      max-height: 140px;
+      border-radius: 8px;
+      display: none;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    /* 인쇄 최적화 */
+    @media print {
+      body {
+        background: transparent;
+        padding: 0;
+        gap: 0;
+      }
+      .poster-container, .document-page {
+        box-shadow: none;
+        border: none;
+        outline: none;
+        max-width: 100%;
+        page-break-after: always;
+      }
+      .action-zone, .modal-overlay {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .poster-hero {
+        padding: 40px 20px 30px;
+      }
+      .poster-title {
+        font-size: 2.2rem;
+      }
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+      .info-box-full {
+        grid-column: span 1;
+      }
+      .action-zone {
+        flex-direction: column;
+      }
+      .document-page {
+        padding: 32px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= 1. 포스터 메인 영역 ================= -->
+  <main class="poster-container" id="posterArea">
+    
+    <!-- 상단 비주얼 영역 -->
+    <header class="poster-hero">
+      <div class="hero-glow"></div>
+      <p class="poster-subtitle">농경의 여신이 수놓은 순백의 제주</p>
+      <h1 class="poster-title">
+        제1회 2026 자청비
+        <span>메밀꽃 사진 공모전</span>
+      </h1>
+      <p class="poster-intro">
+        하늘에서 씨앗을 품고 내려온 농경의 여신 자청비의 숨결을 따라,<br>
+        제주 들녘을 하얗게 물들인 메밀꽃밭의 경이로운 풍경을 만나보아요.
+      </p>
+    </header>
+
+    <!-- 포스터 내용 영역 -->
+    <div class="poster-body">
+
+      <!-- 공모 요강 상세 그리드 -->
+      <section class="info-grid">
+        
+        <!-- 공모 주제 -->
+        <div class="info-box info-box-full">
+          <div class="info-label">📷 공모 주제</div>
+          <div class="info-content">와흘메밀농촌체험휴양마을 풍경과 메밀을 활용한 전통 음식 만들기 등</div>
+          <p class="info-sub">와흘메밀농촌체험휴양마을 풍경 및 메밀을 활용한 전통 음식 체험·조리 사진 등 출품 가능</p>
+        </div>
+
+        <!-- 접수 기간 -->
+        <div class="info-box">
+          <div class="info-label">🗓️ 접수 기간</div>
+          <div class="info-content">2206.10.15 ~ 10월 30일</div>
+          <p class="info-sub">접수 마감일까지</p>
+        </div>
+
+        <!-- 작품 접수 방법 -->
+        <div class="info-box">
+          <div class="info-label">✉️ 작품 접수</div>
+          <div class="info-content">전자우편 접수</div>
+          <p class="info-sub"><a href="mailto:memil@naver.com" style="color: #4d664b; font-weight: 700; text-decoration: underline;">memil@naver.com</a></p>
+        </div>
+
+        <!-- 시상 내역 -->
+        <div class="info-box info-box-full">
+          <div class="info-label">🎁 시상 내역 (총 200만 원)</div>
+          <ul class="prize-list">
+            <li class="prize-item">
+              <span class="prize-rank">🥇 자청비상 (최우수 1명)</span>
+              <span class="prize-val">50만 원</span>
+            </li>
+            <li class="prize-item">
+              <span class="prize-rank">🥈 서천꽃상 (우수상 2명)</span>
+              <span class="prize-val">각 30만 원</span>
+            </li>
+            <li class="prize-item">
+              <span class="prize-rank">🥉 환생꽃상 (장려상 3명)</span>
+              <span class="prize-val">각 20만 원</span>
+            </li>
+            <li class="prize-item">
+              <span class="prize-rank">🎖️ 와흘메밀문화상 (입선 3명)</span>
+              <span class="prize-val">각 10만 원</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- 출품 규격 -->
+        <div class="info-box">
+          <div class="info-label">🖼️ 출품 규격</div>
+          <div class="info-content">디지털 사진 파일 (JPG)</div>
+          <p class="info-sub">고화질 JPG 파일 첨부</p>
+        </div>
+
+        <!-- 당선작 발표 -->
+        <div class="info-box">
+          <div class="info-label">📢 당선작 발표</div>
+          <div class="info-content">2026.11.15</div>
+          <p class="info-sub">개별 통보 및 공식 공지</p>
+        </div>
+      </section>
+
+      <!-- 포스터 하단 버튼 (이메일 접수 및 모집요강 연결) -->
+      <div class="action-zone">
+        <button class="btn btn-primary" onclick="openApplyModal()">
+          <span>✉️</span> 작품 접수하기 (memil@naver.com)
+        </button>
+        <button id="toggleRecruitBtn" class="btn btn-secondary" onclick="toggleRecruitDocument()">
+          <span>📋</span> 상세 모집요강 보기
+        </button>
+      </div>
+
+    </div>
+
+    <!-- 하단 주최 및 문의 푸터 -->
+    <footer class="poster-footer">
+      <div class="sponsor-logos">
+        <span>주최·주관: 와흘메밀마을</span> · <span>원남지협동조합</span>
+      </div>
+      <p>작품 접수 및 문의: 전자우편 memil@naver.com</p>
+    </footer>
+
+  </main>
+
+  <!-- ================= 2. 통합된 상세 공모요강 문서 영역 (원문 전체) ================= -->
+  <section class="document-page" id="recruitDocument">
+    
+    <header class="doc-header">
+      <h2 class="doc-main-title">제1회 2026 자청비 메밀꽃 사진 공모전 계획 및 공모요강</h2>
+      <p class="doc-sub-badge">[ 주최·주관 : 와흘메밀마을 · 원남지협동조합 ]</p>
+    </header>
+
+    <!-- 1. 공모 개요 -->
+    <div class="section-block">
+      <h3 class="section-heading">공모 개요</h3>
+      
+      <div class="bullet-item">
+        <span class="highlight-text">공 모 명</span> : 제1회 2026 자청비 메밀꽃 사진 공모전
+      </div>
+
+      <div class="bullet-item">
+        <span class="highlight-text">접수기간</span> : <span class="highlight-text">2206.10.15 ~ 10월 30일</span> (2026. 10. 15 ~ 10. 30)
+        <div class="dash-bullet">전자우편 접수는 마감일(10월 30일) 18:00 도착분에 한함</div>
+      </div>
+
+      <div class="bullet-item">
+        <span class="highlight-text">접 수 처</span> : 전자우편(이메일) 온라인 접수
+        <div class="dash-bullet">접수 이메일 : <a href="mailto:memil@naver.com" style="color: #2563eb; font-weight: 700;">memil@naver.com</a></div>
+      </div>
+
+      <div class="bullet-item">
+        <span class="highlight-text">출품자격</span> : 대한민국 국민 및 외국인 등 누구나 (제한 없음)
+      </div>
+
+      <div class="bullet-item">
+        <span class="highlight-text">주최·주관</span> : 와흘메밀마을, 원남지협동조합
+      </div>
+    </div>
+
+    <!-- 2. 작품 내용 및 출품 규격 -->
+    <div class="section-block">
+      <h3 class="section-heading">작품 내용 및 출품 규격</h3>
+      
+      <div class="bullet-item">
+        <span class="highlight-text">출품조건</span> : 와흘메밀농촌체험휴양마을 풍경과 메밀을 활용한 전통 음식 만들기 등을 표현할 수 있는 미발표 작품
+        
+        <div class="sub-bullet">와흘메밀농촌체험휴양마을의 아름다운 메밀꽃밭 풍경을 담은 작품</div>
+        <div class="sub-bullet">메밀을 활용한 전통 음식(메밀범벅, 메밀국수, 빙떡 등) 만들기 및 음식 체험 모습을 담은 작품</div>
+        <div class="sub-bullet">농경의 여신 자청비 신화의 숨결과 제주의 자연·사람이 어우러진 정취를 담은 작품</div>
+        <div class="sub-bullet">와흘메밀마을의 특색 있는 포토존 및 숨은 비경을 표현한 작품</div>
+      </div>
+
+      <div class="bullet-item" style="margin-top: 14px;">
+        <span class="highlight-text">촬영 기간</span>
+        <div class="sub-bullet">2025 ~ 2026년 촬영 작품에 한함</div>
+        <div class="sub-bullet">카메라 기종 제한 없음 (디지털 카메라, 스마트폰, 드론 촬영본 모두 출품 가능)</div>
+      </div>
+
+      <div class="bullet-item" style="margin-top: 14px;">
+        <span class="highlight-text">사진 규격</span>
+        <div class="sub-bullet">3,000px 이상, 20MB 이내 JPG 또는 JPEG 원본 파일</div>
+        <div class="sub-bullet">모든 출품작은 원본 파일의 EXIF 정보를 통해 촬영 일시가 확인 가능해야 함</div>
+      </div>
+    </div>
+
+    <!-- 3. 출품료 및 출품 요령 -->
+    <div class="section-block">
+      <h3 class="section-heading">출품료 및 출품 요령</h3>
+      
+      <div class="bullet-item">
+        <span class="highlight-text">출 품 료</span> : <span class="highlight-text">무료</span>
+      </div>
+
+      <div class="bullet-item">
+        <span class="highlight-text">출품 수량</span> : 1인당 최대 3점 이내
+      </div>
+
+      <div class="bullet-item">
+        <span class="highlight-text">출품 방법</span>
+        <div class="sub-bullet">전자우편(<a href="mailto:memil@naver.com">memil@naver.com</a>)으로 고화질 JPG(JPEG) 파일 첨부하여 발송</div>
+        <div class="sub-bullet">메일 제목 : <strong>[제1회 2026 자청비 메밀꽃 사진 공모전 출품] 출품자 성명 - 작품명</strong></div>
+        <div class="sub-bullet">메일 본문 기재 사항 :
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; padding: 12px 16px; margin-top: 8px; font-size: 0.93rem; line-height: 1.8;">
+            1. 출품자 성명 : <br>
+            2. 연락처(휴대전화) : <br>
+            3. 작품명 : <br>
+            4. 촬영 장소 및 작품 설명 : <br>
+            * 디지털 JPG 원본 사진 파일 첨부 필수
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. 시상 규모 -->
+    <div class="section-block">
+      <h3 class="section-heading">시상 규모 (총 상금 200만 원, 총 9명)</h3>
+      
+      <div class="table-wrap">
+        <table class="prize-table">
+          <thead>
+            <tr>
+              <th style="width: 25%;">구 분</th>
+              <th style="width: 15%;">수 량</th>
+              <th style="width: 25%;">상 금</th>
+              <th style="width: 35%;">시 상</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>자청비상 (최우수)</strong></td>
+              <td>1점</td>
+              <td><strong>50만 원</strong></td>
+              <td>상장 및 상금</td>
+            </tr>
+            <tr>
+              <td><strong>서천꽃상 (우수)</strong></td>
+              <td>2점</td>
+              <td>각 <strong>30만 원</strong> (계 60만원)</td>
+              <td>상장 및 상금</td>
+            </tr>
+            <tr>
+              <td><strong>환생꽃상 (장려)</strong></td>
+              <td>3점</td>
+              <td>각 <strong>20만 원</strong> (계 60만원)</td>
+              <td>상장 및 상금</td>
+            </tr>
+            <tr>
+              <td><strong>와흘메밀문화상 (입선)</strong></td>
+              <td>3점</td>
+              <td>각 <strong>10만 원</strong> (계 30만원)</td>
+              <td>상장 및 상금</td>
+            </tr>
+            <tr class="total-row">
+              <td><strong>합 계</strong></td>
+              <td><strong>총 9점</strong></td>
+              <td><strong>200만 원</strong></td>
+              <td>-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 5. 유의사항 -->
+    <div class="section-block">
+      <h3 class="section-heading">유의사항</h3>
+
+      <div class="clause-title">[중복 출품 및 타인 명의 도용 금지]</div>
+      <div class="sub-bullet">국내외 타 공모전에서 입상·입선한 동일 작품, 유사 모방 작품, 혹은 타 지역에서 촬영한 사진을 와흘메밀마을 촬영작으로 위장하여 출품한 경우 입상이 취소되며 상금은 전액 환수 조치됩니다.</div>
+      <div class="sub-bullet">타인의 명의를 도용한 대리 출품의 경우도 상권이 취소됩니다.</div>
+
+      <div class="clause-title">[민·형사상 책임 및 개인정보 동의]</div>
+      <div class="sub-bullet">출품작과 관련된 초상권, 저작권, 명의도용 등 법적 분쟁 발생 시, 이에 따른 모든 민·형사상 책임은 출품자 본인에게 있습니다.</div>
+      <div class="sub-bullet">출품자는 본 공모전에 작품을 제출함으로써 본 공모요강 및 개인정보 수집·이용에 동의한 것으로 간주합니다.</div>
+
+      <div class="clause-title">[생성형 AI 활용 및 과도한 편집 제재]</div>
+      <div class="sub-bullet">생성형 AI(인공지능)를 기반으로 제작되거나 합성, 그래픽 기법을 적용한 디지털 사진, 과도한 포토샵 변형 작품은 출품이 일체 불가합니다. (단, 색감, 밝기, 대비 등 기본적인 사진 보정은 허용)</div>
+      <div class="sub-bullet">공모 요강에 부적합한 과도한 보정 및 합성 여부는 심사위원회에서 검증하며 심사에서 제외됩니다.</div>
+
+      <div class="clause-title">[드론 촬영 및 항공 관련 규정]</div>
+      <div class="sub-bullet">드론 사진 출품작의 경우 반드시 법적 절차에 따른 비행 허가 및 항공촬영 승인을 준수한 작품이어야 합니다.</div>
+
+      <div class="clause-title">[시상금 원천징수]</div>
+      <div class="sub-bullet">입상작에 대한 상금은 관련 세법 규정에 따라 제세공과금 원천징수 후 지급될 수 있습니다.</div>
+
+      <div class="clause-title">[저작권 귀속 및 활용]</div>
+      <div class="sub-bullet">수상작에 대한 저작권은 저작자(출품자)에게 귀속됩니다.</div>
+      <div class="sub-bullet">단, 주최·주관사인 와흘메밀마을 및 원남지협동조합은 수상작에 한하여 향후 마을 홍보, 공익 목적의 복제, 전시, 배포, 인쇄물 및 온라인 SNS 홍보물 제작 등에 자유롭게 비영리 목적으로 활용할 수 있는 권리를 갖습니다.</div>
+    </div>
+
+    <!-- 6. 심사 및 결과 발표 -->
+    <div class="section-block">
+      <h3 class="section-heading">심사 및 당선작 발표</h3>
+
+      <div class="bullet-item">
+        <span class="highlight-text">심 사 일</span> : 공모 마감 후 전문가 심사 진행
+      </div>
+
+      <div class="bullet-item">
+        <span class="highlight-text">당선작 발표</span> : <span class="highlight-text">2026. 11. 15 (예정)</span>
+        <div class="dash-bullet">입상자 개별 통보 및 공식 공지</div>
+      </div>
+
+      <div class="bullet-item">
+        <span class="highlight-text">문 의 처</span>
+        <div class="dash-bullet">와흘메밀마을 · 원남지협동조합 공모전 운영사무국</div>
+        <div class="dash-bullet">전자우편 문의 : <a href="mailto:memil@naver.com" style="color: #2563eb; font-weight: 700;">memil@naver.com</a></div>
+      </div>
+    </div>
+
+    <div style="text-align: center; margin-top: 24px;">
+      <button class="btn btn-primary" style="display: inline-flex; width: auto; padding: 12px 32px;" onclick="window.print()">
+        <span>🖨️</span> 공모요강 인쇄 / PDF 저장
+      </button>
+    </div>
+
+  </section>
+
+  <!-- 온라인 출품 모달 팝업 -->
+  <div id="applyModal" class="modal-overlay" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-content">
+      <h2 class="modal-header">🌾 공모전 작품 접수 안내</h2>
+      <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 16px;">
+        접수처: <strong style="color: #445943;">memil@naver.com</strong> (전자우편)<br>
+        규격: 고화질 <strong>JPG</strong> 사진 파일 첨부
+      </p>
+      
+      <div class="form-group">
+        <label for="userName">출품자 성명</label>
+        <input type="text" id="userName" class="form-control" placeholder="성함을 입력해 주세요" />
+      </div>
+
+      <div class="form-group">
+        <label for="userPhone">연락처</label>
+        <input type="tel" id="userPhone" class="form-control" placeholder="010-0000-0000" />
+      </div>
+
+      <div class="form-group">
+        <label for="workTitle">작품명</label>
+        <input type="text" id="workTitle" class="form-control" placeholder="예: 와흘 메밀꽃밭의 아침" />
+      </div>
+
+      <div class="form-group">
+        <label>작품 사진 파일 (JPG 미리보기)</label>
+        <div class="file-dropzone" onclick="document.getElementById('photoInput').click()">
+          <span id="uploadText">📁 클릭하여 JPG 사진을 선택해 보세요</span>
+          <img id="imagePreview" class="file-preview" alt="미리보기" />
+        </div>
+        <input type="file" id="photoInput" accept=".jpg, .jpeg, image/jpeg" style="display: none;" onchange="previewImage(event)" />
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-primary" onclick="sendViaEmail()">이메일로 제출하기</button>
+        <button class="btn btn-secondary" onclick="closeApplyModal()">닫기</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // '상세 모집요강 보기' 버튼 클릭 시 공모요강 문서 표시/접기 토글 함수
+    function toggleRecruitDocument() {
+      const doc = document.getElementById('recruitDocument');
+      const btn = document.getElementById('toggleRecruitBtn');
+
+      if (doc.style.display === 'none' || doc.style.display === '') {
+        doc.style.display = 'block';
+        btn.innerHTML = '<span>▲</span> 상세 모집요강 접기';
+        setTimeout(() => {
+          doc.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 50);
+      } else {
+        doc.style.display = 'none';
+        btn.innerHTML = '<span>📋</span> 상세 모집요강 보기';
+        document.getElementById('posterArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // 모달 열기/닫기
+    function openApplyModal() {
+      document.getElementById('applyModal').style.display = 'flex';
+    }
+
+    function closeApplyModal() {
+      document.getElementById('applyModal').style.display = 'none';
+    }
+
+    function closeModalOnBackdrop(e) {
+      if (e.target.id === 'applyModal') {
+        closeApplyModal();
+      }
+    }
+
+    // 사진 미리보기 기능 (JPG)
+    function previewImage(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const preview = document.getElementById('imagePreview');
+          const uploadText = document.getElementById('uploadText');
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+          uploadText.textContent = `선택된 파일: ${file.name}`;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // 이메일 제출 연결
+    function sendViaEmail() {
+      const name = document.getElementById('userName').value.trim() || '출품자';
+      const phone = document.getElementById('userPhone').value.trim() || '미기재';
+      const title = document.getElementById('workTitle').value.trim() || '제목 미기재';
+
+      const email = 'memil@naver.com';
+      const subject = encodeURIComponent(`[제1회 2026 자청비 메밀꽃 사진 공모전 출품] ${name} - ${title}`);
+      const body = encodeURIComponent(
+        `[제1회 2026 자청비 메밀꽃 사진 공모전 출품 신청]\n\n` +
+        `1. 출품자 성명: ${name}\n` +
+        `2. 연락처: ${phone}\n` +
+        `3. 작품명: ${title}\n\n` +
+        `※ 작성하신 이메일에 원본 JPG 사진 파일을 반드시 첨부하여 발송해 주세요!`
+      );
+
+      window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+      closeApplyModal();
+    }
+  </script>
+</body>
+</html>
